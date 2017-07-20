@@ -3,7 +3,7 @@ import serial
 import struct
 
 # TODO Replace with the serial port where your receiver module is connected.
-PORT = '/dev/ttyUSB0'
+PORT = '/dev/tty.usbserial-AL01T0RJ'
 # TODO Replace with the baud rate of you receiver module.
 BAUD_RATE = 9600
 
@@ -22,11 +22,11 @@ print(">> Waiting for data...")
 while True:
     try:
         response = xbee.wait_read_frame()
-        print(response)
-        source_addr = response['source_addr_long'].hex().upper()
-        payload = prettyHexString(response['rf_data'].hex().upper())
-        data = struct.unpack('ff', response['rf_data'])
-        print('From %s >> [%s] | { temperature: %.1f degrees, humidity: %.1f%% }' % (source_addr, payload, data[0], data[1]))
+        print("res =>>> {}".format(response))
+        #source_addr = response['source_addr_long'].hex().upper()
+        #payload = prettyHexString(response['rf_data'].hex().upper())
+        #data = struct.unpack('ff', response['rf_data'])
+        #print('From %s >> [%s] | { temperature: %.1f degrees, humidity: %.1f%% }' % (source_addr, payload, data[0], data[1]))
 
     except KeyboardInterrupt:
         break
