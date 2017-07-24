@@ -23,10 +23,13 @@ while True:
     try:
         response = xbee.wait_read_frame()
         print("res =>>> {}".format(response))
-        #source_addr = response['source_addr_long'].hex().upper()
-        #payload = prettyHexString(response['rf_data'].hex().upper())
-        #data = struct.unpack('ff', response['rf_data'])
-        #print('From %s >> [%s] | { temperature: %.1f degrees, humidity: %.1f%% }' % (source_addr, payload, data[0], data[1]))
+        source_addr = response['source_addr_long'].hex().upper()
+        print(source_addr)
+        payload = prettyHexString(response['rf_data'].hex().upper())
+        print(payload)
+        data = struct.unpack('ff', response['rf_data'])
+        print("data is {}".format(data))
+        print('From %s >> [%s] | { temperature: %.1f degrees, humidity: %.1f%% }' % (source_addr, payload, data[0], data[1]))
 
     except KeyboardInterrupt:
         break
